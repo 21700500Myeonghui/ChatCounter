@@ -8,12 +8,18 @@ import java.util.regex.Pattern;
 
 public class DataReaderForCSV {
 
-	public void read(String fileName)
+	
+	public static void read(String fileName)
 	{
+		 String date=null;
+		 String name=null;
+		 String message=null;
+		 
 		try {
 			Scanner inputStream= new Scanner(new File(fileName));
-			String line= inputStream.nextLine();
-			
+			inputStream.nextLine();
+			String line;			
+		
 			while(inputStream.hasNextLine())
 			{
 				line=inputStream.nextLine();
@@ -24,11 +30,11 @@ public class DataReaderForCSV {
 				
 				if(m.find())
 				{
-					date=Integer.parseInt(ary[0]);
+					date=ary[0];
 				}
 				name=ary[1];
 				message=ary[2];
-				addtoHashMap();
+				AddToHashMap.addToHashMap(date,name,message);
 			}
 			inputStream.close();
 			

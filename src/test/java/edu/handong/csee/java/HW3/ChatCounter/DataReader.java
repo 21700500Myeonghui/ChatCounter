@@ -6,33 +6,26 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DataReader {
-	private int date;
-	private String name;
-	private String message;
+	private File[] files;
 
 	private static String path;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args){
 		
 		// TODO Auto-generated method stub
 		
-		try{
 			DataReader dataReader = new DataReader();
 			dataReader.path ="C:\\ChatCounter";
 		    dataReader.getData(path);
-		}catch(IOException e)
-		{
-			System.out.println("error");
-		}
+	
 		}
 	
-    private ArrayList<String> getData(String strDir) throws IOException
+    private void getData(String strDir)
 	{
-		File[] files=getListOfFilesFromDirectory(getDataDirectory(strDir));
-		ArrayList<String> message=readFiles(files);
-		return message;
+		files=getListOfFilesFromDirectory(getDataDirectory(strDir));
 		
 	}
 
@@ -42,25 +35,21 @@ public class DataReader {
     	return f;
     }
     
-    private File[] getListOfFilesFromDirectory (File dataDir)
+    private File[] getListOfFilesFromDirectory(File dataDir)
     {
     	for(File file:dataDir.listFiles())
     	{
+    		String filename=file.getAbsolutePath();
+    		if(filename.contains(".txt")==true)
+    			DataReaderForTXT.readForTxtData(filename);
+    		else if(filename.contains(".csv")==true)
+    			DataReaderForCSV.read(filename);
     		System.out.println(file.getAbsolutePath());
     	}
+    	ChatMessageCounter.chatMessageCount();
     	return dataDir.listFiles();
     }
     
-    private ArrayList<String> readFiles(File[] files) throws IOException
-    {
-    	ArrayList<String> message= new ArrayList<String>();
-    	
-    	for(int i=0; i<files.length;i++)
-    	{
-    		Path source=Paths.get(files[i].getPath());
-    		message.add(i, Files.probeContentType(source));
-    		//System.out.println(message.get(i));
-    	}
-    	return message;
-    }
+    
+    
 }
