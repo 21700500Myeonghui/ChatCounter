@@ -30,7 +30,6 @@ public class DataReaderForTXT {
 			for(int i=0;i<3;i++)
 			{
 				line=br.readLine();
-		    System.out.println(line);
 			}
 			
 			while((line=br.readLine())!=null)
@@ -50,44 +49,101 @@ public class DataReaderForTXT {
 						line=line.substring(0,5)+'0'+line.substring(7);
 					
 					date=line.replaceAll("[^0-9]", "");
-					System.out.println(date);
-					System.out.println(name);
-					System.out.println(message);
+				
 				}
+
+				
 				else if(c=='[')
 				{
-					for(int i=1;i<100;i++)
+					int i;
+					for( i=1;i<100;i++)
 					{
 						if(line.charAt(i)==']')
 							break;
 						name+=line.charAt(i);
 					}
+								
+					line=line.substring(i+3);
+					
+					String rara="";
+					int k;
+					for(k=0;k<100;k++)
+					{if(line.charAt(k)==']')
+						break;
+					    rara+=line.charAt(k);
+					}
+					
+					String day=rara.substring(0,2);
+					String time2[]=rara.split(":");
+					time2[0]=time2[0].replaceAll("[^0-9]", "");
+					time2[1]=time2[1].replaceAll("[^0-9]", "");
+				
+					
+					if(day=="오전")			
+		     			{System.out.println("0");
+						time2[0]=changeDigit(time2[0]);
+					    System.out.println(time2[0]);
+					}
+					
+					if(day=="오후")
+					{
+						int ruru=Integer.parseInt(day);
+						if(ruru<10)
+							time2[0]=changeDigit(time2[0]);
+					}
+				
 					
 					
-					line=line.substring(4);
-					if(line.charAt(4)==':')
-						line=line.substring(0)+"0"+line.substring(3);
+					
+					/*if(line.charAt(4)==':')
+						line.replaceFirst(" ", "0");
+						//line=line.substring(0)+"0"+line.substring(3);
 					if(line.charAt(6)==']')
-						line=line.substring(0,4)+"0"+line.substring(5);
+						line.replaceFirst(":", "0");
+						//line=line.substring(0,4)+"0"+line.substring(5);
 					if(line.charAt(5)==':'&&line.charAt(7)==']')
-						line=line.substring(0,4)+"0"+line.substring(6);
-					if(line.compareTo("오전 12")==0)
-						line.replaceFirst("12", "00");
-				}
-				int j;
+						line.replaceFirst(":", "0");
+						//line=line.substring(0,4)+"0"+line.substring(6);
+					
+					*/
+					/*if(line.contains("오전 12")==true)
+					{	line=line.replaceFirst("12", "00");
+					System.out.println("ture"+line);
+					}*/
+					
+					
+					
+					/*
+					 * if(line.charAt(4)==':'&&line.charAt(7)==']')
+				
+					{
+						
+						/* char x=line.charAt(3);
+						String change=changeDigit(x);
+						line.replaceFirst(Character.toString(x), change);
+					}
+					*/
+				
+				
+				/*int j;
 				for(j=0;j<100;j++)
 				{
 					if(line.charAt(j)==']')
 						break;
 				}
+				String line2=line;
 				line=line.substring(0,j);
-				date=line.replaceAll("[^0-9]", "");
-				message=line.substring(j+1);
-				System.out.println(date);
-				System.out.println(name);
+				date=day+time2[0]+time2[1];
+				date=line.replaceAll("[^0-9]", "");*/
+					
+				message=line.substring(k+2);
 				System.out.println(message);
-				AddToHashMap.addToHashMap(date,name,message);
-					br.close();
+			
+				
+				}
+				
+				//AddToHashMap.addToHashMap(date,name,message);
+				
 					
 			}
 			
@@ -103,9 +159,22 @@ public class DataReaderForTXT {
 		
 	}
 
-	private static Path Path(String fileName) {
+	/*private static Path Path(String fileName) {
 		// TODO Auto-generated method stub
 		return null;
+	}*/
+	private static String changeDigit(String x)
+	{
+		System.out.println(x);
+		String y2="";
+		int y=Integer.parseInt(x);
+		y=y+12;
+		if(y==24)
+			y2="00";
+		
+		return Integer.toString(y);
+		
+		
 	}
 	
 

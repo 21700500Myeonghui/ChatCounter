@@ -75,16 +75,18 @@ public class DataReaderForCSV {
 				
 					AddToHashMap.addToHashMap(date, name, message);
 					thisLine=br.readLine();
+					
 				}
 				else {
 					message=message.substring(1,size-1);
 					
 					AddToHashMap.addToHashMap(date,name,message);
 					thisLine=br.readLine();
-					
+				
 					}
 			
-			
+			if(thisLine==null)
+				break;
 				
 			}
 		
