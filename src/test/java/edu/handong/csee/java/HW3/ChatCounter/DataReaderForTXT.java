@@ -1,31 +1,43 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+
 
 public class DataReaderForTXT {
 
 
 	public static void readForTxtData(String fileName)
 	{
-	   String date=null;
-	   String name=null;
-	   String message=null;
-
+	
 		try {
-			Scanner inputStream=new Scanner(new File(fileName));
-			
+			 
+			BufferedReader br = new BufferedReader( new InputStreamReader(new FileInputStream(fileName), "UTF8"));
+		
+			String line;
 			for(int i=0;i<3;i++)
 			{
-				inputStream.nextLine();
-		    }
+				line=br.readLine();
+		    System.out.println(line);
+			}
 			
-			while(inputStream.hasNextLine())
+			while((line=br.readLine())!=null)
 			{
-				String line=inputStream.nextLine();
+				String date=null;
+				String name=null;
+			    String message=null;
 				char c=line.charAt(0);
 				if(c=='-')
 				{
@@ -37,7 +49,10 @@ public class DataReaderForTXT {
 					if(line.charAt(9)=='ÀÏ'&&line.charAt(7)==' ')
 						line=line.substring(0,5)+'0'+line.substring(7);
 					
-					date=patternMatching(line,date);
+					date=line.replaceAll("[^0-9]", "");
+					System.out.println(date);
+					System.out.println(name);
+					System.out.println(message);
 				}
 				else if(c=='[')
 				{
@@ -66,34 +81,33 @@ public class DataReaderForTXT {
 						break;
 				}
 				line=line.substring(0,j);
-				date=patternMatching(line,date);
+				date=line.replaceAll("[^0-9]", "");
 				message=line.substring(j+1);
+				System.out.println(date);
+				System.out.println(name);
+				System.out.println(message);
 				AddToHashMap.addToHashMap(date,name,message);
+					br.close();
 					
 			}
 			
-		
-		
-			
-			
-			
-			inputStream.close();
-			
-		}catch(FileNotFoundException e)
+	}catch(FileNotFoundException e)
 		{
 			System.out.println("Error opening the file"+fileName);
 			System.exit(0);
 		}
+		catch(IOException e)
+		{
+			System.out.println("error");
+		}
 		
+	}
+
+	private static Path Path(String fileName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
-	public static String patternMatching(String line,String date)
-	{
-		Pattern p=Pattern.compile("(^[0-9]*$)");
-		Matcher m= p.matcher(line);
-		if(m.find())
-			date=date+line;
-		return date;
-	}
+	
 }

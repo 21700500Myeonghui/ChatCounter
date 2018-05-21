@@ -1,27 +1,28 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class ChatMessageCounter {
 
 	public static void chatMessageCount()
 	{
-		int size=AddToHashMap.arrayList.size();
-		String result[][]=new String [size][2];
+		HashMap<String, Integer> result = new HashMap<String,Integer>();
 		
-		for(int i=0;i<size;i++)
+		for(int i=0; i<AddToHashMap.arrayList.size(); i++)
 		{
-			result[i][0]=AddToHashMap.arrayList.get(i).getName();
-			result[i][1]=AddToHashMap.arrayList.get(i).getHashMapsize();
+			result.put(AddToHashMap.arrayList.get(i).getName(), AddToHashMap.arrayList.get(i).getDateList().size());
 		}
 		
-		for(int i=0;i<size;i++)
-			{
-			for(int j=0;j<2;j++)
-				System.out.println(result[i][j]);
-		     System.out.println("\n");
-			}
+		Set<String> keys=result.keySet();
+		Iterator<String> it=keys.iterator();
 		
-		
+		while(it.hasNext()) {
+			String key=it.next();
+			Integer value=result.get(key);
+			System.out.println(key+" "+value);
+		}
+
 	}
 }

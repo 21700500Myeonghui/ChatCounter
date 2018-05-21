@@ -8,25 +8,27 @@ public class AddToHashMap {
 	
 		public static void addToHashMap(String date, String name, String message)
 	{
-			HashMap<String, String> h2=new HashMap<String,String>();
-			String name1;
 			int i;
 			for( i=0;i<arrayList.size();i++)
 			{
 				if(arrayList.get(i).getName()==name)
 				{
-					h2=arrayList.get(i).getdateMessage();
-					if(h2.containsKey(date)==true && h2.containsValue(message)==true)
+					if(arrayList.get(i).getDateList().contains(date)==true && arrayList.get(i).getMessageList().contains(message)==true)
 						return;
 					else
-						arrayList.get(i).setdateMessage(date, message);
+						{arrayList.get(i).setDateList(date);
+						arrayList.get(i).setMessageList(message);
+						return;
+						}
+						}
+					
+					
 				}
-			}
+			
 			if(i==arrayList.size())
 			{
-				arrayList.get(i).setName(name);
-				arrayList.get(i).setdateMessage(date, message);
-				
+				arrayList.add(new Add(name,date,message));
+				return;
 			}
 	}
 }

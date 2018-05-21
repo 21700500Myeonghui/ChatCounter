@@ -1,44 +1,44 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Add {
 
 	private String name;
-	private HashMap<String,String> h=new HashMap<String,String>();
+	ArrayList<String> dateList =new ArrayList();
+	ArrayList<String> messageList=new ArrayList();
 	
-	public Add()
-	{
-		
-	}
 	public Add(String name, String date, String message)
 	{
 		this.name=name;
-		h.put(date, message);
+		dateList.add(date);
+		messageList.add(message);
 	}
-	
-	public String getName()
-	{
+
+	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name)
-	{
-		this.name=name;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ArrayList<String> getDateList() {
+		return dateList;
+	}
+
+	public void setDateList(String date) {
+		dateList.add(date);
+	}
+
+	public ArrayList<String> getMessageList() {
+		return messageList;
+	}
+
+	public void setMessageList(String message) {
+		messageList.add(message);
 	}
 	
-	public HashMap<String,String> getdateMessage()
-	{
-		return h;
-	}
+
 	
-	public void setdateMessage(String date, String message)
-	{
-		h.put(date, message);
-	}
-	
-	public String getHashMapsize()
-	{
-		return Integer.toString(h.size());
-	}
 }
