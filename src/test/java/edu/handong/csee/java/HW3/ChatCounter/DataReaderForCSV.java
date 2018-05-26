@@ -11,7 +11,10 @@ import java.util.regex.Pattern;
 
 public class DataReaderForCSV {
 
-	
+	public static String name3="";//
+	public static String date3="";//
+	public static String message3="";//
+	public static String second3="";//
 	public static void read(String fileName)
 	{
 		try {
@@ -26,17 +29,21 @@ public class DataReaderForCSV {
 				String message=null;
 				String date=null;
 				String name=null;
+				String second=null;
 							
 				 
 				String[] ary =thisLine.split(",");
 					
 				date=ary[0].replaceAll("[^0-9]", "");
 				int size3=date.length();
-				date=date.substring(0,size3-2);
+				second=date.substring(size3-2,size3);
+				System.out.println("s"+second);
+				date=date.substring(2,size3-2);
 				
 									
 				int size=ary[1].length();
 				name=ary[1].substring(1,size-1);
+	
 				
 				
 				//size=ary[2].length();
@@ -48,19 +55,7 @@ public class DataReaderForCSV {
 						message+=","+ary[j];
 				}
 				
-				/*String line2=thisLine.substring(0,3);
-				if(line2!="2018")
-				{
-					message+=thisLine;
-					int size2=message.length();
-					message=message.substring(1,size-1);
-					System.out.println(message);
-					AddToHashMap.addToHashMap(date,name,message);
-					thisLine=br.readLine();
-
-					
-					
-				}*/
+				
 				size=message.length();
 				int size2;
 				if(message.charAt(size-1)!='"')
@@ -72,15 +67,38 @@ public class DataReaderForCSV {
 					}while(thisLine.charAt(size2-1)!='"');
 					size=message.length();
 					message=message.substring(1,size-1);
-			System.out.println(date+" "+name+" "+" "+message);
+					
+					/*if(name3.contains(name)==true&&message3.contains(message)==true&&date3.contains(date)==true&&second3.contains(second)==false)
+					{
+						System.out.println("22222");
+						extraAdd(name,date,message);
+					}*/
+					
+					
+			        System.out.println(date+","+name+","+message);
 					AddToHashMap2.addToHashMap2(name, date, message);
+				
+					date3=date;//
+					second3=second;//
+					message3=message;//
+					name3=name;//
+					
 					thisLine=br.readLine();
 					
 				}
 				else {
 					message=message.substring(1,size-1);
-					System.out.println(date+" "+name+" "+" "+message);
+					/*if(name3.contains(name)==true&&message3.contains(message)==true&&date3.contains(date)==true&&second3.contains(second)==false)
+					{
+						extraAdd(name,date,message);
+						
+					}*/
+					System.out.println(date+","+name+","+message);
 					AddToHashMap2.addToHashMap2(name,date,message);
+					date3=date;//
+					second3=second;//
+					message3=message;//
+					name3=name;//
 					thisLine=br.readLine();
 				
 					}
@@ -101,6 +119,26 @@ public class DataReaderForCSV {
 			System.out.println("error");
 		}
 		
+	}
+	
+	private static void extraAdd(String name, String date, String message)
+	{
+		String dateMessage=date+message;
+		for(int i=0;i<AddToHashMap2.arrayList2.size();i++)
+		{
+			if(AddToHashMap2.arrayList2.get(i).getName().contains(name)==true)
+			{
+				Add2 temp=new Add2();
+				temp=AddToHashMap2.arrayList2.get(i);
+				
+				temp.getDateMessageList().add(dateMessage);
+			
+				AddToHashMap2.arrayList2.add(i, temp);
+				System.out.println(AddToHashMap2.arrayList2.get(i).getDateMessageList().size());
+				return;
+			}
+		}
+		return;
 	}
 }
 

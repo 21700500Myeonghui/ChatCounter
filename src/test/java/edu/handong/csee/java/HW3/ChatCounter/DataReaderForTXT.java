@@ -39,9 +39,10 @@ public class DataReaderForTXT {
 					if(line.charAt(5)=='월')
 						line=line.replaceFirst(" ", "0");
 					if(line.charAt(8)=='일')
-						line=line.substring(0,6)+"0"+line.substring(8);
+						line=line.replaceFirst(" ", "0");
+						//line=line.substring(0,6)+"0"+line.substring(8);
 					if(line.charAt(9)=='일'&&line.charAt(7)==' ')
-						line=line.substring(0,5)+"0"+line.substring(7);
+						line=line.substring(0,6)+"0"+line.substring(8);
 					
 					date=line.replaceAll("[^0-9]", "");
 					date2=date;
@@ -137,7 +138,7 @@ public class DataReaderForTXT {
 					
 				message=line.substring(k+2);
 			
-				System.out.println(date+" "+name+" "+" "+message);
+				System.out.println(date+","+name+","+message);
 				AddToHashMap2.addToHashMap2(name,date,message);
 				
 				}
