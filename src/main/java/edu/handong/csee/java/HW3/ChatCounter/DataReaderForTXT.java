@@ -26,8 +26,9 @@ public class DataReaderForTXT {
 				line=br.readLine();
 			
 		
+			line=br.readLine();
 			
-			while((line=br.readLine())!=null)
+			while(true)
 			{
 				String date="";
 				String name="";
@@ -46,6 +47,7 @@ public class DataReaderForTXT {
 					
 					date=line.replaceAll("[^0-9]", "");
 					date2=date;
+					line=br.readLine();
 				
 				}
 
@@ -137,12 +139,30 @@ public class DataReaderForTXT {
 				date=line.replaceAll("[^0-9]", "");*/
 					
 				message=line.substring(k+2);
+				line=br.readLine();
+				do {
+					if((line.charAt(0)!='-')&&(line.charAt(0)!='[')) 
+						{message=message+" "+line;
+						line=br.readLine();
+						}
+					else
+					{
+						line=br.readLine();
+						break;
+					}
+					}while((line.charAt(0)!='-' )&& (line.charAt(0)!='['));
+				
+				
+				
+				
 			
 				System.out.println(date+","+name+","+message);
 				AddToHashMap2.addToHashMap2(name,date,message);
 				
-				}
 				
+				if(line==null)
+					break;
+				}
 				
 					
 			}

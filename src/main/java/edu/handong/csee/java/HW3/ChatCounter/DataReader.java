@@ -46,8 +46,9 @@ public class DataReader {
     		if(filename.contains(".txt")==true)
     			DataReaderForTXT.readForTxtData(filename);
     		else if(filename.contains(".csv")==true)
-    			 DataReaderForCSV.read(filename);
-    		//System.out.println(file.getAbsolutePath());
+    			 DataReaderForCSV.read(filename);		
+    			 
+    		System.out.println(file.getAbsolutePath());
     	}
     	ChatMessageCounter.chatMessageCount();
     	return dataDir.listFiles();

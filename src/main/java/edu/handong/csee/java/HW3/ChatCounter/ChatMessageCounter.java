@@ -14,7 +14,7 @@ public class ChatMessageCounter {
 		for(int i=0;i<arrayListSize;i++) {
 			result.put(AddToHashMap2.arrayList2.get(i).getName(), AddToHashMap2.arrayList2.get(i).getDateMessageList().size());
 		}
-		
+				
 		Iterator<String> iterator=result.keySet().iterator();
 		
 		while(iterator.hasNext()) {
