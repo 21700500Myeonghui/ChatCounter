@@ -1,24 +1,19 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
-import java.io.BufferedOutputStream;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 
 
 
 public class DataReaderForTXT {
 
 
+	public static String date2="";
 	public static void readForTxtData(String fileName)
 	{
 	
@@ -28,27 +23,28 @@ public class DataReaderForTXT {
 		
 			String line;
 			for(int i=0;i<3;i++)
-			{
 				line=br.readLine();
-			}
+			
+		
 			
 			while((line=br.readLine())!=null)
 			{
-				String date=null;
-				String name=null;
-			    String message=null;
+				String date="";
+				String name="";
+			    String message="";
 				char c=line.charAt(0);
 				if(c=='-')
 				{
 					line=line.substring(18);
-					if(line.charAt(5)=='¿ù')
-						line.replaceFirst(" ", "0");
-					if(line.charAt(8)=='ÀÏ')
-						line=line.substring(0,6)+'0'+line.substring(8);
-					if(line.charAt(9)=='ÀÏ'&&line.charAt(7)==' ')
-						line=line.substring(0,5)+'0'+line.substring(7);
+					if(line.charAt(5)=='ì›”')
+						line=line.replaceFirst(" ", "0");
+					if(line.charAt(8)=='ì¼')
+						line=line.substring(0,6)+"0"+line.substring(8);
+					if(line.charAt(9)=='ì¼'&&line.charAt(7)==' ')
+						line=line.substring(0,5)+"0"+line.substring(7);
 					
 					date=line.replaceAll("[^0-9]", "");
+					date2=date;
 				
 				}
 
@@ -77,20 +73,23 @@ public class DataReaderForTXT {
 					String time2[]=rara.split(":");
 					time2[0]=time2[0].replaceAll("[^0-9]", "");
 					time2[1]=time2[1].replaceAll("[^0-9]", "");
-				
 					
-					if(day=="¿ÀÀü")			
-		     			{System.out.println("0");
+					
+					if(day.equals("ì˜¤ì „")==true)			
+		     			{
 						time2[0]=changeDigit(time2[0]);
-					    System.out.println(time2[0]);
+		     					    
 					}
 					
-					if(day=="¿ÀÈÄ")
+					if(day.equals("ì˜¤í›„")==true)
 					{
-						int ruru=Integer.parseInt(day);
-						if(ruru<10)
-							time2[0]=changeDigit(time2[0]);
+						int ruru=Integer.parseInt(time2[0]);
+						if(ruru<12)
+						time2[0]=changeDigit2(ruru);
 					}
+					date=date+time2[0]+time2[1];
+					date=date2+date;
+					
 				
 					
 					
@@ -106,7 +105,7 @@ public class DataReaderForTXT {
 						//line=line.substring(0,4)+"0"+line.substring(6);
 					
 					*/
-					/*if(line.contains("¿ÀÀü 12")==true)
+					/*if(line.contains("ï¿½ï¿½ï¿½ï¿½ 12")==true)
 					{	line=line.replaceFirst("12", "00");
 					System.out.println("ture"+line);
 					}*/
@@ -137,12 +136,12 @@ public class DataReaderForTXT {
 				date=line.replaceAll("[^0-9]", "");*/
 					
 				message=line.substring(k+2);
-				System.out.println(message);
 			
+				System.out.println(date+" "+name+" "+" "+message);
+				AddToHashMap2.addToHashMap2(name,date,message);
 				
 				}
 				
-				//AddToHashMap.addToHashMap(date,name,message);
 				
 					
 			}
@@ -163,16 +162,21 @@ public class DataReaderForTXT {
 		// TODO Auto-generated method stub
 		return null;
 	}*/
+	
 	private static String changeDigit(String x)
 	{
-		System.out.println(x);
-		String y2="";
-		int y=Integer.parseInt(x);
-		y=y+12;
-		if(y==24)
-			y2="00";
+		if(x.length()==1)
+			x="0"+x;
+		if(x.equals("12")==true)
+			x="00";
+		return x;
+	}
+	private static String changeDigit2(int x)
+	{
 		
-		return Integer.toString(y);
+		x+=12;
+		
+		return Integer.toString(x);
 		
 		
 	}

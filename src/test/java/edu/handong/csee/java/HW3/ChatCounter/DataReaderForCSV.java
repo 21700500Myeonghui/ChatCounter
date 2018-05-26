@@ -72,15 +72,15 @@ public class DataReaderForCSV {
 					}while(thisLine.charAt(size2-1)!='"');
 					size=message.length();
 					message=message.substring(1,size-1);
-				
-					AddToHashMap.addToHashMap(date, name, message);
+			System.out.println(date+" "+name+" "+" "+message);
+					AddToHashMap2.addToHashMap2(name, date, message);
 					thisLine=br.readLine();
 					
 				}
 				else {
 					message=message.substring(1,size-1);
-					
-					AddToHashMap.addToHashMap(date,name,message);
+					System.out.println(date+" "+name+" "+" "+message);
+					AddToHashMap2.addToHashMap2(name,date,message);
 					thisLine=br.readLine();
 				
 					}

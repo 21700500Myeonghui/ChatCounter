@@ -5,12 +5,24 @@ import java.util.ArrayList;
 public class Add {
 
 	private String name;
-	ArrayList<String> dateList =new ArrayList();
-	ArrayList<String> messageList=new ArrayList();
+	private ArrayList<String> dateList =new ArrayList<String>();
+	private ArrayList<String> messageList=new ArrayList<String>();
 	
+	public Add() {
+		
+	}
+	public void setDateList2(ArrayList<String> dateList) {
+		this.dateList = dateList;
+	}
 	public Add(String name, String date, String message)
 	{
 		this.name=name;
+		dateList.add(date);
+		messageList.add(message);
+	}
+	public Add(String date, String message)
+	{
+	
 		dateList.add(date);
 		messageList.add(message);
 	}

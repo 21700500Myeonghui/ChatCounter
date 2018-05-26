@@ -42,13 +42,14 @@ public class DataReader {
     	for(File file:dataDir.listFiles())
     	{
     		String filename=file.getPath();
+    		System.out.println(filename); 
     		if(filename.contains(".txt")==true)
     			DataReaderForTXT.readForTxtData(filename);
     		else if(filename.contains(".csv")==true)
     			DataReaderForCSV.read(filename);
     		//System.out.println(file.getAbsolutePath());
     	}
-    	//ChatMessageCounter.chatMessageCount();
+    	ChatMessageCounter.chatMessageCount();
     	return dataDir.listFiles();
     }
     

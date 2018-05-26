@@ -1,0 +1,43 @@
+package edu.handong.csee.java.HW3.ChatCounter;
+
+import java.util.ArrayList;
+
+public class AddToHashMap2 {
+
+	public static ArrayList<Add2> arrayList2=new ArrayList<Add2>();
+	
+	public static void addToHashMap2(String name, String date, String message)
+	{
+		String dateMessage=date+message;
+		int size=arrayList2.size();
+		int i=0;
+		if(size==0)
+			arrayList2.add(new Add2(name,dateMessage));
+		else
+		{
+			for(i=0;i<size;i++)
+			{
+				if(arrayList2.get(i).getName()==name)
+				{
+					if(arrayList2.get(i).getDateMessageList().contains(dateMessage)==true)
+						return;
+					else
+					{
+						Add2 temp=new Add2();
+						temp=arrayList2.get(i);
+						temp.getDateMessageList().add(dateMessage);
+						arrayList2.add(i, temp);
+						return;
+					}
+				}
+				if(i==size-1)
+				{
+					arrayList2.add(new Add2(name,dateMessage));
+					return;
+				}
+				}
+			
+		}
+	}
+	
+}
