@@ -1,6 +1,7 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,9 +19,14 @@ public class DataReader {
 		
 		// TODO Auto-generated method stub	
 		
+		CliRunner runner=new CliRunner();
+		runner.run(args);
+		
 		DataReader dataReader = new DataReader();
-			dataReader.path ="C:\\ChatCounter";
-		    dataReader.getData(path);
+			dataReader.getData(args[1]);
+			ChatMessageCounter.chatMessageCount(args[3]);
+		//dataReader.path ="C:\\ChatCounter";
+		    //dataReader.getData(path);
 		   
 		}
 	
@@ -51,7 +57,7 @@ public class DataReader {
     		System.out.println(file.getAbsolutePath());
     	}
    
-    	ChatMessageCounter.chatMessageCount();
+    	//ChatMessageCounter.chatMessageCount(args[3]);
     
     	return dataDir.listFiles();
     }

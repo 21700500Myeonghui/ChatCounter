@@ -1,5 +1,7 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,8 +10,10 @@ import java.util.TreeMap;
 
 public class ChatMessageCounter {
 
-	public static void chatMessageCount()
+	public static void chatMessageCount(String args)
 	{
+		try{
+			BufferedWriter fw=new BufferedWriter(new FileWriter(args,true)); 
 		HashMap<String, Integer> result = new HashMap<String,Integer>();
 		ValueComparator bvc=new ValueComparator(result);
 		TreeMap<String,Integer> sorted_map=new TreeMap<String,Integer>(bvc);
@@ -29,8 +33,13 @@ public class ChatMessageCounter {
 		
 		 for (Map.Entry<String,Integer> entry : sorted_map.entrySet()) {
 	           
-	            System.out.println(entry.getKey()+" : "+result.get(entry.getKey()));
+	            fw.write(entry.getKey()+","+result.get(entry.getKey())+"\n");
 	        }
+		 fw.close();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 	}
 }
