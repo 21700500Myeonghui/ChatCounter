@@ -11,10 +11,6 @@ import java.util.regex.Pattern;
 
 public class DataReaderForCSV {
 
-	public static String name3="";//
-	public static String date3="";//
-	public static String message3="";//
-	public static String second3="";//
 	public static void read(String fileName)
 	{
 		try {
@@ -37,16 +33,12 @@ public class DataReaderForCSV {
 				date=ary[0].replaceAll("[^0-9]", "");
 				int size3=date.length();
 				second=date.substring(size3-2,size3);
-				//System.out.println("s"+second);
 				date=date.substring(2,size3-2);
 				
 									
 				int size=ary[1].length();
 				name=ary[1].substring(1,size-1);
 	
-				
-				
-				//size=ary[2].length();
 				message=ary[2];
 				
 				if(ary.length>3)
@@ -68,37 +60,23 @@ public class DataReaderForCSV {
 					size=message.length();
 					message=message.substring(1,size-1);
 					
-					if(name3.contains(name)==true&&message3.contains(message)==true&&date3.contains(date)==true&&second3.contains(second)==false)
-					{
-						System.out.println("22222");
-						extraAdd(name,date,message);
-					}
+					if(message.equals("사진")==true)
+						message="Photo";
 					
-					
-			        System.out.println(date+","+name+","+message);
+					message=message.replace("\"\"", "\"");
 					AddToHashMap2.addToHashMap2(name, date, message);
-				
-					date3=date;//
-					second3=second;//
-					message3=message;//
-					name3=name;//
 					
 					thisLine=br.readLine();
 					
 				}
 				else {
 					message=message.substring(1,size-1);
-					if(name3.contains(name)==true&&message3.contains(message)==true&&date3.contains(date)==true&&second3.contains(second)==false)
-					{
-						extraAdd(name,date,message);
-						
-					}
-					System.out.println(date+","+name+","+message);
+					if(message.equals("사진")==true)
+						message="Photo";
+					
+					message=message.replace("\"\"", "\"");
+				
 					AddToHashMap2.addToHashMap2(name,date,message);
-					date3=date;//
-					second3=second;//
-					message3=message;//
-					name3=name;//
 					thisLine=br.readLine();
 				
 					}
@@ -120,42 +98,5 @@ public class DataReaderForCSV {
 		
 	}
 	
-	private static void extraAdd(String name, String date, String message)
-	{
-		String dateMessage=date+message;
-		for(int i=0;i<AddToHashMap2.arrayList2.size();i++)
-		{
-			if(AddToHashMap2.arrayList2.get(i).getName().contains(name)==true)
-			{
-				Add2 temp=new Add2();
-				temp=AddToHashMap2.arrayList2.get(i);
-				
-				temp.getDateMessageList().add(dateMessage);
-			
-				AddToHashMap2.arrayList2.add(i, temp);
-				System.out.println(AddToHashMap2.arrayList2.get(i).getDateMessageList().size());
-				return;
-			}
-		}
-		return;
-	}
+
 }
-
-
-
-
-
-
-
-/*For developers in Windows, you may read files like this with UTF-8 format.
-try {
-    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
-    while ((thisLine = br.readLine()) != null) { // while loop begins here
-       lines.add(thisLine);
-       System.out.println(thisLine);
-    }
-    br.close();
- } catch (IOException e) {
-    e.printStackTrace();
- } // end while 
-*/

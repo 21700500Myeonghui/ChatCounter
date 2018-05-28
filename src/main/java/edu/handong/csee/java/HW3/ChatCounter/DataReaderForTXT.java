@@ -7,12 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
-
-
 public class DataReaderForTXT {
-
-
 	public static String date2="";
 	public static void readForTxtData(String fileName)
 	{
@@ -24,7 +19,6 @@ public class DataReaderForTXT {
 			String line;
 			for(int i=0;i<3;i++)
 				line=br.readLine();
-			
 		
 			line=br.readLine();
 			
@@ -41,7 +35,6 @@ public class DataReaderForTXT {
 						line=line.replaceFirst(" ", "0");
 					if(line.charAt(8)=='일')
 						line=line.replaceFirst(" ", "0");
-						//line=line.substring(0,6)+"0"+line.substring(8);
 					if(line.charAt(9)=='일'&&line.charAt(7)==' ')
 						line=line.substring(0,6)+"0"+line.substring(8);
 					
@@ -93,77 +86,32 @@ public class DataReaderForTXT {
 					date=date+time2[0]+time2[1];
 					date=date2+date;
 					
-				
-					
-					
-					
-					/*if(line.charAt(4)==':')
-						line.replaceFirst(" ", "0");
-						//line=line.substring(0)+"0"+line.substring(3);
-					if(line.charAt(6)==']')
-						line.replaceFirst(":", "0");
-						//line=line.substring(0,4)+"0"+line.substring(5);
-					if(line.charAt(5)==':'&&line.charAt(7)==']')
-						line.replaceFirst(":", "0");
-						//line=line.substring(0,4)+"0"+line.substring(6);
-					
-					*/
-					/*if(line.contains("���� 12")==true)
-					{	line=line.replaceFirst("12", "00");
-					System.out.println("ture"+line);
-					}*/
-					
-					
-					
-					/*
-					 * if(line.charAt(4)==':'&&line.charAt(7)==']')
-				
-					{
-						
-						/* char x=line.charAt(3);
-						String change=changeDigit(x);
-						line.replaceFirst(Character.toString(x), change);
-					}
-					*/
-				
-				
-				/*int j;
-				for(j=0;j<100;j++)
-				{
-					if(line.charAt(j)==']')
-						break;
-				}
-				String line2=line;
-				line=line.substring(0,j);
-				date=day+time2[0]+time2[1];
-				date=line.replaceAll("[^0-9]", "");*/
-					
 				message=line.substring(k+2);
 				line=br.readLine();
-				do {
-					if((line.charAt(0)!='-')&&(line.charAt(0)!='[')) 
-						{message=message+" "+line;
-						line=br.readLine();
-						}
-					else
-					{
-						line=br.readLine();
-						break;
-					}
-					}while((line.charAt(0)!='-' )&& (line.charAt(0)!='['));
-				
-				
-				
-				
-			
-				System.out.println(date+","+name+","+message);
-				AddToHashMap2.addToHashMap2(name,date,message);
-				
-				
 				if(line==null)
-					break;
+					{if(message.equals("사진")==true)
+						message="Photo";
+					
+					AddToHashMap2.addToHashMap2(name,date,message);
+					
+					return;}
+				
+				else if((line.charAt(0)!='-')&& (line.charAt(0)!='['))
+				{
+					message=message+line;
+					line=br.readLine();
 				}
 				
+				if(message.equals("사진")==true)
+					message="Photo";			
+				
+				AddToHashMap2.addToHashMap2(name,date,message);
+			
+				
+				}
+				if(line==null)
+					break;
+
 					
 			}
 			
@@ -179,10 +127,7 @@ public class DataReaderForTXT {
 		
 	}
 
-	/*private static Path Path(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+
 	
 	private static String changeDigit(String x)
 	{
@@ -201,6 +146,7 @@ public class DataReaderForTXT {
 		
 		
 	}
+
 	
 
 	

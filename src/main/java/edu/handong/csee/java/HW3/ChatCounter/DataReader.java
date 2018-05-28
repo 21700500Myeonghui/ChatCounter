@@ -16,9 +16,9 @@ public class DataReader {
 
 	public static void main(String[] args) {
 		
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
 		
-			DataReader dataReader = new DataReader();
+		DataReader dataReader = new DataReader();
 			dataReader.path ="C:\\ChatCounter";
 		    dataReader.getData(path);
 		   
@@ -50,7 +50,9 @@ public class DataReader {
     			 
     		System.out.println(file.getAbsolutePath());
     	}
+   
     	ChatMessageCounter.chatMessageCount();
+    
     	return dataDir.listFiles();
     }
     

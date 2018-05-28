@@ -2,18 +2,23 @@ package edu.handong.csee.java.HW3.ChatCounter;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class ChatMessageCounter {
 
 	public static void chatMessageCount()
 	{
 		HashMap<String, Integer> result = new HashMap<String,Integer>();
+		ValueComparator bvc=new ValueComparator(result);
+		TreeMap<String,Integer> sorted_map=new TreeMap<String,Integer>(bvc);
 		int arrayListSize=AddToHashMap2.arrayList2.size();
 		
 		for(int i=0;i<arrayListSize;i++) {
 			result.put(AddToHashMap2.arrayList2.get(i).getName(), AddToHashMap2.arrayList2.get(i).getDateMessageList().size());
 		}
+		sorted_map.putAll(result);
 				
 		Iterator<String> iterator=result.keySet().iterator();
 		
@@ -22,20 +27,10 @@ public class ChatMessageCounter {
 			System.out.println("key="+key+"/value="+result.get(key));
 		}
 		
-		
-		/*for(int i=0; i<AddToHashMap.arrayList.size(); i++)
-		{
-			result.put(AddToHashMap.arrayList.get(i).getName(), AddToHashMap.arrayList.get(i).getDateList().size());
-		}
-		
-		Set<String> keys=result.keySet();
-		Iterator<String> it=keys.iterator();
-		
-		while(it.hasNext()) {
-			String key=it.next();
-			Integer value=result.get(key);
-			System.out.println(key+" "+value);
-		}*/
+		 for (Map.Entry<String,Integer> entry : sorted_map.entrySet()) {
+	           
+	            System.out.println(entry.getKey()+" : "+result.get(entry.getKey()));
+	        }
 
 	}
 }

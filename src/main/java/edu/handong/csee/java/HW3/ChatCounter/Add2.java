@@ -33,4 +33,9 @@ public class Add2 {
 		dateMessageList.add(dateMessage);
 	}
 	
+	public void setDateMessageList2(ArrayList<String> dateMessageList)
+	{
+		this.dateMessageList=dateMessageList;
+	}
+	
 }

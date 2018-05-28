@@ -17,11 +17,9 @@ public class AddToHashMap2 {
 		if(size==0)
 			{
 			arrayList2.add(new Add2(name,dateMessage));
-			//System.out.println("1");
 			}
 		else
 		{
-			//System.out.println("2");
 			for(i=0;i<size;i++)
 			{
 			
@@ -29,10 +27,10 @@ public class AddToHashMap2 {
 				{
 
 					if(arrayList2.get(i).getDateMessageList().contains(dateMessage)==true)
-						{//System.out.println("3");
+						{
 						return;}
 					else
-					{ //System.out.println("5");
+					{ 
 						Add2 temp=new Add2();
 						temp=arrayList2.get(i);
 						
@@ -46,7 +44,6 @@ public class AddToHashMap2 {
 			}
 				if(i==size)
 				{		arrayList2.add(new Add2(name,dateMessage));
-				//System.out.println("4");
 				return;
 				}
 		
