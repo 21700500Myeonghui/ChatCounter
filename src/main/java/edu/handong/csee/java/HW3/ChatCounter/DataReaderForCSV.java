@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * @version java version "9.0.4"
+ * @author Lee MyeongHui
+ * This class is defined for reading the data in the csv file.
+ * The DataReaderFor class has read() method
+ */
 public class DataReaderForCSV {
 
 	public static void read(String fileName)
