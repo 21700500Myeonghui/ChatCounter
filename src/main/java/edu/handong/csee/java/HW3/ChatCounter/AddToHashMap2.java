@@ -40,9 +40,9 @@ public class AddToHashMap2 {
 		{
 			for(i=0;i<size;i++)
 			{
-
 				if(arrayList2.get(i).getName().contains(name)==true)
 				{
+					//System.out.println("true");
 
 					if(arrayList2.get(i).getDateMessageList().contains(dateMessage)==true)
 					{
@@ -53,6 +53,7 @@ public class AddToHashMap2 {
 					{  //System.out.println("3");
 						Add2 temp=new Add2();
 						temp=arrayList2.get(i);
+						System.out.println("2");
 
 						temp.getDateMessageList().add(dateMessage);
 
@@ -67,7 +68,7 @@ public class AddToHashMap2 {
 			{	//System.out.println("4");	
 				
 				arrayList2.add(new Add2(DataReaderForTXTThread.nameList2.get(p),DataReaderForTXTThread.dateMessageList2.get(p)));
-			continue;
+			    continue;
 			}
 
 

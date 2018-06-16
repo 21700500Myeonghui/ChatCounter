@@ -35,13 +35,13 @@ public class ChatMessageCounter {
 
 			while(iterator.hasNext()) {
 				String key=(String)iterator.next();
-				System.out.println("key="+key+"/value="+result.get(key));
+				//System.out.println("key="+key+"/value="+result.get(key));
 			}
 
 			for (Map.Entry<String,Integer> entry : sorted_Map.entrySet()) {
 
 				fw.write(entry.getKey()+","+result.get(entry.getKey())+"\n");
-				// System.out.println(entry.getKey()+","+result.get(entry.getKey())+"\n");
+				 System.out.println(entry.getKey()+","+result.get(entry.getKey())+"\n");
 			}
 
 			fw.close();
