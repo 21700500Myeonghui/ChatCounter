@@ -39,11 +39,11 @@ public class DataReaderForTXTThread implements Runnable {
 			{char b=line.charAt(17);
 			if(b=='0') {
 				line=line.substring(18);
-				if(line.charAt(5)=='¿ù')
+				if(line.charAt(5)=='ì›”')
 					line=line.replaceFirst(" ", "0");
-				if(line.charAt(8)=='ÀÏ')
+				if(line.charAt(8)=='ì¼')
 					line=line.replaceFirst(" ", "0");
-				if(line.charAt(9)=='ÀÏ'&&line.charAt(7)==' ')
+				if(line.charAt(9)=='ì¼'&&line.charAt(7)==' ')
 					line=line.substring(0,6)+"0"+line.substring(8);
 
 				date=line.replaceAll("[^0-9]", "");
@@ -78,7 +78,7 @@ public class DataReaderForTXTThread implements Runnable {
 
 				line=line.substring(i+3);
 
-				if(line.charAt(0)=='¿À') {
+				if(line.charAt(0)=='ì˜¤') {
 
 					String raRa="";
 					//int k;
@@ -94,13 +94,13 @@ public class DataReaderForTXTThread implements Runnable {
 					time2[1]=time2[1].replaceAll("[^0-9]", "");
 
 
-					if(day.equals("¿ÀÀü")==true)			
+					if(day.equals("ì˜¤ì „")==true)			
 					{
 						time2[0]=changeDigit(time2[0]);
 
 					}
 
-					if(day.equals("¿ÀÈÄ")==true)
+					if(day.equals("ì˜¤í›„")==true)
 					{
 						int ruRu=Integer.parseInt(time2[0]);
 						if(ruRu<12)
@@ -136,7 +136,7 @@ public class DataReaderForTXTThread implements Runnable {
 				message=line.substring(k+2);
 				line=br.readLine();
 				if(line==null)
-				{if(message.equals("»çÁø")==true)
+				{if(message.equals("ì‚¬ì§„")==true)
 					message="Photo";
 				
 				dateMessage=date+message;
@@ -153,9 +153,12 @@ public class DataReaderForTXTThread implements Runnable {
 					line=br.readLine();
 				}
 
-				if(message.equals("»çÁø")==true)
+				if(message.equals("ì‚¬ì§„")==true)
 					message="Photo";			
 				dateMessage=date+message;
+				
+				
+				System.out.println(name);
 				nameList2.add(name);
 				dateMessageList2.add(dateMessage);
 				
@@ -226,11 +229,14 @@ public class DataReaderForTXTThread implements Runnable {
 		else
 			return "12";
 	}
-
+ 
 
 
 
 	public DataReaderForTXTThread(String fileName) {
 		this.fileName=fileName;
+		//Thread worker =new Thread();
+		//worker.run();
+		//DataReader.threadList.add(worker);
 	}
 }

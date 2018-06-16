@@ -24,7 +24,7 @@ public class DataReaderForCSVThread implements Runnable {
 				String date=null;
 				String name=null;
 				String second=null;
-				String dateMessage=null;
+				String dateMessage="";
 							
 				 
 				String[] ary =thisLine.split(",");
@@ -59,10 +59,11 @@ public class DataReaderForCSVThread implements Runnable {
 					size=message.length();
 					message=message.substring(1,size-1);
 					
-					if(message.equals("»çÁø")==true)
+					if(message.equals("ì‚¬ì§„")==true)
 						message="Photo";
 					
 					message=message.replace("\"\"", "\"");
+					
 					dateMessage=date+message;
 					DataReaderForTXTThread.nameList2.add(name);
 					DataReaderForTXTThread.dateMessageList2.add(dateMessage);
@@ -74,7 +75,7 @@ public class DataReaderForCSVThread implements Runnable {
 				}
 				else {
 					message=message.substring(1,size-1);
-					if(message.equals("»çÁø")==true)
+					if(message.equals("ì‚¬ì§„")==true)
 						message="Photo";
 					
 					message=message.replace("\"\"", "\"");
@@ -107,5 +108,8 @@ public class DataReaderForCSVThread implements Runnable {
 	
 	public DataReaderForCSVThread(String fileName) {
 		this.fileName=fileName;
+		//Thread worker =new Thread();
+		//worker.run();
+		//DataReader.threadList.add(worker);
 	}
 }

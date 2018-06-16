@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.lang.Thread;
 
 /**
  * @version java version "9.0.4"
@@ -22,6 +23,7 @@ import java.util.concurrent.Executors;
  */
 public class DataReader {
 	private File[] files;
+	//public static ArrayList<Thread> threadList=new ArrayList<Thread>();
 
 	//private static String path;
 
@@ -36,6 +38,16 @@ public class DataReader {
 		DataReader dataReader = new DataReader();
 		try {
 			dataReader.getData(args[3], coreNum);
+			/*for(Thread thread:threadList)
+			{
+				try {
+					thread.join();
+				}catch(InterruptedException e)
+				{
+					System.out.println("error");
+				}
+			}
+			*/
 			AddToHashMap2.addToHashMap2();
 			
 			ChatMessageCounter.chatMessageCount(args[5]);
@@ -53,7 +65,9 @@ public class DataReader {
 	private void getData(String strDir, int coreNum)
 	{
 
+		//getListOfFilesFromDirectory(getDataDirectory(strDir),coreNum);
 		files=getListOfFilesFromDirectory(getDataDirectory(strDir),coreNum);
+		return;
 
 	}
 
@@ -72,11 +86,16 @@ public class DataReader {
 			String fileName=file.getPath();
 			//System.out.println("////////////////"+filename); 
 			if(fileName.contains(".txt")==true) {
+				//DataReaderForTXTThread2 object1=new DataReaderForTXTThread2(fileName);
 				Runnable worker = new DataReaderForTXTThread(fileName);
 				executor.execute(worker);
+				//DataReaderForTXTThread2 object =new DataReaderForTXTThread2(fileName);			
+				
+				
 				//DataReaderForTXT.readForTxtData(fileName);
 			}
 			else if(fileName.contains(".csv")==true) {
+				//DataReaderForCSVThread object2 =new DataReaderForCSVThread(fileName);
 				Runnable worker = new DataReaderForCSVThread(fileName);
 				executor.execute(worker);
 				//DataReaderForCSV.read(fileName);
@@ -91,6 +110,7 @@ public class DataReader {
 		executor.shutdown();
 		
 		while(!executor.isTerminated()) {
+		
 		}
 
 		return dataDir.listFiles();
