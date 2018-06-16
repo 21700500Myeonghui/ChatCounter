@@ -35,7 +35,7 @@ public class ChatMessageCounter {
 
 			while(iterator.hasNext()) {
 				String key=(String)iterator.next();
-				//System.out.println("key="+key+"/value="+result.get(key));
+				System.out.println("key="+key+"/value="+result.get(key));
 			}
 
 			for (Map.Entry<String,Integer> entry : sorted_Map.entrySet()) {
@@ -47,7 +47,7 @@ public class ChatMessageCounter {
 			fw.close();
 		}catch(Exception e)
 		{
-			System.out.println("can't make file");
+			System.out.println("can't make file"); 
 		}
 
 

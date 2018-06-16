@@ -18,6 +18,7 @@ import org.apache.commons.cli.Options;
 public class CliRunner {
 	private String inputPath;
 	private String outputPath;
+	private String coreNum;
 	private boolean help;
 
 	public void run(String[] args)
@@ -40,6 +41,7 @@ public class CliRunner {
 
 			inputPath=c.getOptionValue("i");
 			outputPath=c.getOptionValue("o");
+			coreNum=c.getOptionValue("c");
 			help=c.hasOption("h");
 		}catch(Exception e) {
 			printHelp(options);
@@ -69,6 +71,13 @@ public class CliRunner {
 				.desc("Set a path of a directory that output data")
 				.hasArg()
 				.argName("output option")
+				.required()
+				.build());
+		
+		options.addOption(Option.builder("c").longOpt("corenum")
+				.desc("Set a path of a directory that output data")
+				.hasArg()
+				.argName("corenum option")
 				.required()
 				.build());
 

@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @version java version "9.0.4"
@@ -25,27 +28,32 @@ public class DataReader {
 	public static void main(String[] args) throws FileNotFoundException {
 
 		// TODO Auto-generated method stub	
+		int coreNum = Integer.parseInt(args[1]);
 
 		CliRunner runner=new CliRunner();
 		runner.run(args);
 
 		DataReader dataReader = new DataReader();
 		try {
-			dataReader.getData(args[1]);
-			ChatMessageCounter.chatMessageCount(args[3]);
+			dataReader.getData(args[3], coreNum);
+			AddToHashMap2.addToHashMap2();
+			
+			ChatMessageCounter.chatMessageCount(args[5]);
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("please typing pleas....");
 		}
+		
+		
 		//dataReader.path ="C:\\ChatCounter";
 		//dataReader.getData(path);
 
 	}
 
-	private void getData(String strDir)
+	private void getData(String strDir, int coreNum)
 	{
 
-		files=getListOfFilesFromDirectory(getDataDirectory(strDir));
+		files=getListOfFilesFromDirectory(getDataDirectory(strDir),coreNum);
 
 	}
 
@@ -55,25 +63,38 @@ public class DataReader {
 		return f;
 	}
 
-	private File[] getListOfFilesFromDirectory(File dataDir)
+	private File[] getListOfFilesFromDirectory(File dataDir, int coreNum)
 	{
+		ExecutorService executor = Executors.newFixedThreadPool(coreNum);
+		
 		for(File file:dataDir.listFiles())
 		{
 			String fileName=file.getPath();
 			//System.out.println("////////////////"+filename); 
-			if(fileName.contains(".txt")==true)
-				DataReaderForTXT.readForTxtData(fileName);
-			else if(fileName.contains(".csv")==true)
-				DataReaderForCSV.read(fileName);		
-
+			if(fileName.contains(".txt")==true) {
+				Runnable worker = new DataReaderForTXTThread(fileName);
+				executor.execute(worker);
+				//DataReaderForTXT.readForTxtData(fileName);
+			}
+			else if(fileName.contains(".csv")==true) {
+				Runnable worker = new DataReaderForCSVThread(fileName);
+				executor.execute(worker);
+				//DataReaderForCSV.read(fileName);
+				
+			}
+			
 			//System.out.println(file.getAbsolutePath());
 		}
 
 		//ChatMessageCounter.chatMessageCount(args[3]);
+		
+		executor.shutdown();
+		
+		while(!executor.isTerminated()) {
+		}
 
 		return dataDir.listFiles();
 	}
-
 
 
 

@@ -14,7 +14,7 @@ public class Add2 {
 	public Add2(String name, String dateMessage)
 	{
 		this.name=name;
-		dateMessageList.add(dateMessage);
+		dateMessageList.add(dateMessage); 
 	}
 
 	public Add2()

@@ -17,17 +17,24 @@ public class AddToHashMap2 {
 	 */
 	public static ArrayList<Add2> arrayList2=new ArrayList<Add2>();
 
-	public static void addToHashMap2(String name, String date, String message)
+	public static void addToHashMap2()
 	{
-		String dateMessage=date+message;
-		int size=arrayList2.size();
-		int i=0;
+		//String dateMessage=date+message;
+		int size=0;
+		int i=0; 
 		int count=0;
 
-
-		if(size==0)
+      for(int p=0; p<DataReaderForTXTThread.nameList2.size();p++)
+      {
+    	String name=DataReaderForTXTThread.nameList2.get(p);
+    	String dateMessage=DataReaderForTXTThread.dateMessageList2.get(p);
+    	size=arrayList2.size();
+		
+    	if(size==0)
 		{
-			arrayList2.add(new Add2(name,dateMessage));
+			//System.out.println("1");
+			arrayList2.add(new Add2(DataReaderForTXTThread.nameList2.get(p),DataReaderForTXTThread.dateMessageList2.get(p)));
+			continue;
 		}
 		else
 		{
@@ -39,27 +46,35 @@ public class AddToHashMap2 {
 
 					if(arrayList2.get(i).getDateMessageList().contains(dateMessage)==true)
 					{
-						return;}
+						//System.out.println("2");
+						continue;
+					}
 					else
-					{ 
+					{  //System.out.println("3");
 						Add2 temp=new Add2();
 						temp=arrayList2.get(i);
 
 						temp.getDateMessageList().add(dateMessage);
 
 						arrayList2.add(i, temp);
-						return;
+						
+						continue;
 					}
 				}
 
-			}
+			    }
 			if(i==size)
-			{		arrayList2.add(new Add2(name,dateMessage));
-			return;
+			{	//System.out.println("4");	
+				
+				arrayList2.add(new Add2(DataReaderForTXTThread.nameList2.get(p),DataReaderForTXTThread.dateMessageList2.get(p)));
+			continue;
 			}
 
 
 		}
+		}
+      
+ 
 	}
 }
 

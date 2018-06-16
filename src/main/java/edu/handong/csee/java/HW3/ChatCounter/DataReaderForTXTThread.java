@@ -1,27 +1,22 @@
 package edu.handong.csee.java.HW3.ChatCounter;
 
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-/**
- * This class is defined for reading the data in the txt file.
- * @version java version "9.0.4"
- * @author Lee MyeongHui
- * The DataReaderForTXT has readForTxtData(), changeDigit(), changeDigit2(), changeToMonth() methods
- * The DataReaderForTXT has date2 public static variable.
- *
- */
-public class DataReaderForTXT {
-	/**
-	 * Create String type variable date2, put "" in date2
-	 * its modifier is static and public
-	 */
+import java.util.ArrayList;
+
+public class DataReaderForTXTThread implements Runnable {
+	public static ArrayList<String> nameList2=new ArrayList<String>();
+	public static ArrayList<String> dateMessageList2=new ArrayList<String>();
 	public static String date2="";
-	public static void readForTxtData(String fileName)
-	{
+	String fileName;
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		
 
 		try {
 
@@ -38,16 +33,17 @@ public class DataReaderForTXT {
 			String date="";
 			String name="";
 			String message="";
+			String dateMessage="";
 			char c=line.charAt(0);
 			if(c=='-')
 			{char b=line.charAt(17);
 			if(b=='0') {
 				line=line.substring(18);
-				if(line.charAt(5)=='Ïõî')
+				if(line.charAt(5)=='ø˘')
 					line=line.replaceFirst(" ", "0");
-				if(line.charAt(8)=='Ïùº')
+				if(line.charAt(8)=='¿œ')
 					line=line.replaceFirst(" ", "0");
-				if(line.charAt(9)=='Ïùº'&&line.charAt(7)==' ')
+				if(line.charAt(9)=='¿œ'&&line.charAt(7)==' ')
 					line=line.substring(0,6)+"0"+line.substring(8);
 
 				date=line.replaceAll("[^0-9]", "");
@@ -82,7 +78,7 @@ public class DataReaderForTXT {
 
 				line=line.substring(i+3);
 
-				if(line.charAt(0)=='Ïò§') {
+				if(line.charAt(0)=='ø¿') {
 
 					String raRa="";
 					//int k;
@@ -98,13 +94,13 @@ public class DataReaderForTXT {
 					time2[1]=time2[1].replaceAll("[^0-9]", "");
 
 
-					if(day.equals("Ïò§Ï†Ñ")==true)			
+					if(day.equals("ø¿¿¸")==true)			
 					{
 						time2[0]=changeDigit(time2[0]);
 
 					}
 
-					if(day.equals("Ïò§ÌõÑ")==true)
+					if(day.equals("ø¿»ƒ")==true)
 					{
 						int ruRu=Integer.parseInt(time2[0]);
 						if(ruRu<12)
@@ -140,9 +136,13 @@ public class DataReaderForTXT {
 				message=line.substring(k+2);
 				line=br.readLine();
 				if(line==null)
-				{if(message.equals("ÏÇ¨ÏßÑ")==true)
+				{if(message.equals("ªÁ¡¯")==true)
 					message="Photo";
-
+				
+				dateMessage=date+message;
+				nameList2.add(name);
+				dateMessageList2.add(dateMessage);
+				
 				//AddToHashMap2.addToHashMap2(name,date,message);
 
 				return;}
@@ -153,9 +153,12 @@ public class DataReaderForTXT {
 					line=br.readLine();
 				}
 
-				if(message.equals("ÏÇ¨ÏßÑ")==true)
+				if(message.equals("ªÁ¡¯")==true)
 					message="Photo";			
-
+				dateMessage=date+message;
+				nameList2.add(name);
+				dateMessageList2.add(dateMessage);
+				
 				//AddToHashMap2.addToHashMap2(name,date,message);
 
 
@@ -178,9 +181,7 @@ public class DataReaderForTXT {
 
 	}
 
-
-
-	private static String changeDigit(String x) 
+	private static String changeDigit(String x)
 	{
 		if(x.length()==1)
 			x="0"+x;
@@ -228,4 +229,8 @@ public class DataReaderForTXT {
 
 
 
+
+	public DataReaderForTXTThread(String fileName) {
+		this.fileName=fileName;
+	}
 }
