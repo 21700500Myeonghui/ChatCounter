@@ -18,7 +18,7 @@ public class ChatMessageCounter {
 	public static void chatMessageCount(String args)
 	{
 		try{
-			BufferedWriter fw=new BufferedWriter(new FileWriter(args,true)); 
+			BufferedWriter fw=new BufferedWriter(new FileWriter(args)); 
 
 			HashMap<String, Integer> result = new HashMap<String,Integer>();
 			ValueComparator bvc=new ValueComparator(result);

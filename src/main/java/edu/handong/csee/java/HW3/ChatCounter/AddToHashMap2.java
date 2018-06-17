@@ -46,15 +46,15 @@ public class AddToHashMap2 {
     		  remember++;
     	  }
     	  name=line2.substring(0, remember);
-    	  System.out.println(name);
+    	  //System.out.println(name);
     	  message=line2.substring(j+1);
-    	  System.out.println(message);
+    	 //System.out.println(message);
     	  
     
     	size=arrayList2.size();
 		
     	if(size==0)
-		{System.out.println("1");
+		{//System.out.println("1");
 			arrayList2.add(new Add2(name,message));
 			continue;
 		}
@@ -65,19 +65,20 @@ public class AddToHashMap2 {
 				
 				if(arrayList2.get(i).getName().contains(name)==true)
 				{
+					
 					if(arrayList2.get(i).getDateMessageList().contains(message)==true)
-					{System.out.println("2");
+					{//System.out.println("2");
 						break;
 					}
 					else
-					{ System.out.println("3");
+					{ //System.out.println("3");
 						Add2 temp=new Add2();
 						temp=arrayList2.get(i);
 					
 
 						temp.getDateMessageList().add(message);
 
-						arrayList2.add(i, temp);
+						//arrayList2.add(i, temp);
 						
 						break;
 					}
@@ -85,7 +86,7 @@ public class AddToHashMap2 {
 
 			    }
 			if(i==size)
-			{		System.out.println("4");			
+			{		//System.out.println("4");			
 				arrayList2.add(new Add2(name,message));
 			    continue;
 			}
@@ -93,6 +94,17 @@ public class AddToHashMap2 {
 
 		}
 		}
+		for(Add2 y:arrayList2)
+		{
+			ArrayList<String> b=new ArrayList<String>();
+				System.out.println(y.getName());
+			b=y.getDateMessageList();
+			for(String c:b)
+				System.out.println(c);
+			
+		}
 	}
+	
+	
 }
 

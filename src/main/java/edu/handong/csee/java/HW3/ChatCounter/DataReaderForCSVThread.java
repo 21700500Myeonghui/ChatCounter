@@ -82,6 +82,7 @@ public class DataReaderForCSVThread implements Runnable {
 						message="Photo";
 					
 					message=message.replace("\"\"", "\"");
+					message=message.trim();
 					
 					dateMessage=name+','+date+message;
 					smallArray.add(dateMessage);
@@ -105,6 +106,7 @@ public class DataReaderForCSVThread implements Runnable {
 						message="Photo";
 					
 					message=message.replace("\"\"", "\"");
+					message=message.trim();
 					
 					dateMessage=name+','+date+message;
 					smallArray.add(dateMessage);

@@ -84,7 +84,7 @@ public class DataReader {
 			
 			for(int b=0;b<mmm.size();b++)
 			{
-				System.out.println(";;;;;;;;"+mmm.get(b));
+				//System.out.println(";;;;;;;;"+mmm.get(b));
 			}
 			AddToHashMap2.addToHashMap2();
 			

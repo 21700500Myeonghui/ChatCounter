@@ -145,7 +145,7 @@ public class DataReaderForTXTThread implements Runnable {
 				if(line==null)
 				{if(message.equals("사진")==true)
 					message="Photo";
-				
+				message=message.trim();
 				dateMessage=name+','+date+message;
 				smallArray.add(dateMessage);
 				
@@ -167,7 +167,8 @@ public class DataReaderForTXTThread implements Runnable {
 				}
 
 				if(message.equals("사진")==true)
-					message="Photo";			
+					message="Photo";	
+				message=message.trim();
 				dateMessage=name+','+date+message;
 				smallArray.add(dateMessage);
 				
