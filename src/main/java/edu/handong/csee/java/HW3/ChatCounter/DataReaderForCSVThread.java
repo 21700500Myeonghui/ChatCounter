@@ -5,12 +5,30 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class DataReaderForCSVThread implements Runnable {
 
+	private ArrayList<String> smallArray=new ArrayList<String>();
+	public static ArrayList<String> fullArray=new ArrayList<String>();
+	//private ArrayList<String> smallArray=new ArrayList<String>();
+	//ArrayList2 arrayList=new ArrayList2();
 	String fileName;
+	
+	public ArrayList<String> getSmallArray() {
+		return smallArray;
+	}
+
+	public void setSmallArray(ArrayList<String> smallArray) {
+		this.smallArray = smallArray;
+	}
+
+	ArrayList2 finalList=new ArrayList2();
+	
+	
 	@Override
 	public void run() {
+	 //ArrayList<String> smallArray=new ArrayList<String>();
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "UTF8"));
 			
@@ -64,9 +82,16 @@ public class DataReaderForCSVThread implements Runnable {
 					
 					message=message.replace("\"\"", "\"");
 					
-					dateMessage=date+message;
-					DataReaderForTXTThread.nameList2.add(name);
-					DataReaderForTXTThread.dateMessageList2.add(dateMessage);
+					dateMessage=name+','+date+message;
+					smallArray.add(dateMessage);
+					
+					finalList.getA().add(dateMessage);
+					//arrayList.getA().add(dateMessage);
+					//DataReaderForTXTThread.nameList2.add(dateMessage);
+					
+					//dateMessage=date+message;
+					//DataReaderForTXTThread.nameList2.add(name);
+					//DataReaderForTXTThread.dateMessageList2.add(dateMessage);
 					
 					//AddToHashMap2.addToHashMap2(name, date, message);
 					
@@ -79,10 +104,18 @@ public class DataReaderForCSVThread implements Runnable {
 						message="Photo";
 					
 					message=message.replace("\"\"", "\"");
+					
+					dateMessage=name+','+date+message;
+					smallArray.add(dateMessage);
+					finalList.getA().add(dateMessage);
+					
+					//arrayList.getA().add(dateMessage);
+					//ArrayList2.
+					//DataReaderForTXTThread.nameList2.add(dateMessage);
 				
-					dateMessage=date+message;
-					DataReaderForTXTThread.nameList2.add(name);
-					DataReaderForTXTThread.dateMessageList2.add(dateMessage);
+					//dateMessage=date+message;
+					//DataReaderForTXTThread.nameList2.add(name);
+					//DataReaderForTXTThread.dateMessageList2.add(dateMessage);
 					//AddToHashMap2.addToHashMap2(name,date,message);
 					thisLine=br.readLine();
 				
@@ -91,8 +124,14 @@ public class DataReaderForCSVThread implements Runnable {
 					break;
 			
 			}
+			for(int k=0;k<smallArray.size();k++)
+			{
+
+			      fullArray.add(smallArray.get(k));
+				//System.out.println(fullArray.get(k));
+			}
 		
-			
+		//fullArray.addAll(smallArray);
 		}
 		catch(FileNotFoundException e)
 		{
@@ -105,6 +144,10 @@ public class DataReaderForCSVThread implements Runnable {
 		
 	}
 
+	public DataReaderForCSVThread ()
+	{
+		
+	}
 	
 	public DataReaderForCSVThread(String fileName) {
 		this.fileName=fileName;

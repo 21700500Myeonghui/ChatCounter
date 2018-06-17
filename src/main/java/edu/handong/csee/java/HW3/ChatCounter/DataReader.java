@@ -23,9 +23,25 @@ import java.lang.Thread;
  */
 public class DataReader {
 	private File[] files;
-	//public static ArrayList<Thread> threadList=new ArrayList<Thread>();
+	public static ArrayList<ArrayList<String>> mmm=new ArrayList<ArrayList<String>>();
+	ArrayList2 a=new ArrayList2();
+	
+	
+	//DataReaderForTXTThread bbc=new DataReaderForTXTThread();
+	//DataReaderForCSVThread csv=new DataReaderForCSVThread();
+
+	ArrayList<ArrayList<String>> finalfinal=new ArrayList<ArrayList<String>>();
+	
+	public ArrayList2 getA() {
+		return a;
+	}
+
+	public void setA(ArrayList2 a) {
+		this.a = a;
+	}
 
 	//private static String path;
+	public static ArrayList<String> fullArray=new ArrayList<String>();
 
 	public static void main(String[] args) throws FileNotFoundException {
 
@@ -34,20 +50,35 @@ public class DataReader {
 
 		CliRunner runner=new CliRunner();
 		runner.run(args);
+		
+		
+	    /*ArrayList2 myList=new ArrayList2();
+	    
+	    ArrayList<String> please=myList.getA();
+	    
+	    for(int i=0;i<please.size();i++)
+	    {
+	    	System.out.println(i+" "+please.get(i));
+	    }*/
+	    
+	    
+	    
+	    
 
 		DataReader dataReader = new DataReader();
 		try {
 			dataReader.getData(args[3], coreNum);
-			/*for(Thread thread:threadList)
+			
+			/*for(int i=0; i<mmm.size();i++)
 			{
-				try {
-					thread.join();
-				}catch(InterruptedException e)
-				{
-					System.out.println("error");
-				}
-			}
-			*/
+				ArrayList<String> mmm2=mmm.get(i);
+				System.out.println(mmm2);
+					/*for(int p=0;p<mmm2.size();p++)
+						System.out.println(";;;;;;;;"+mmm2.get(p));
+				
+				
+			}*/
+			
 			AddToHashMap2.addToHashMap2();
 			
 			ChatMessageCounter.chatMessageCount(args[5]);
@@ -81,32 +112,39 @@ public class DataReader {
 	{
 		ExecutorService executor = Executors.newFixedThreadPool(coreNum);
 		
+		//ArrayList<ArrayList<String>> middleArrayList =new ArrayList<ArrayList<String>>();
+		
+		
+		
 		for(File file:dataDir.listFiles())
 		{
 			String fileName=file.getPath();
-			//System.out.println("////////////////"+filename); 
+			
 			if(fileName.contains(".txt")==true) {
-				//DataReaderForTXTThread2 object1=new DataReaderForTXTThread2(fileName);
 				Runnable worker = new DataReaderForTXTThread(fileName);
 				executor.execute(worker);
-				//DataReaderForTXTThread2 object =new DataReaderForTXTThread2(fileName);			
 				
+				/*DataReaderForTXTThread object1=new DataReaderForTXTThread();
+				mmm.add(executor.));*/
+				
+			
 				
 				//DataReaderForTXT.readForTxtData(fileName);
 			}
 			else if(fileName.contains(".csv")==true) {
-				//DataReaderForCSVThread object2 =new DataReaderForCSVThread(fileName);
+				
 				Runnable worker = new DataReaderForCSVThread(fileName);
 				executor.execute(worker);
+				
+				/*DataReaderForCSVThread object2=new DataReaderForCSVThread();
+				mmm.add(object2.getSmallArray());*/
 				//DataReaderForCSV.read(fileName);
+				//finalfinal.add(bbc.getSmallArray());
 				
 			}
 			
-			//System.out.println(file.getAbsolutePath());
+			
 		}
-
-		//ChatMessageCounter.chatMessageCount(args[3]);
-		
 		executor.shutdown();
 		
 		while(!executor.isTerminated()) {
@@ -114,6 +152,14 @@ public class DataReader {
 		}
 
 		return dataDir.listFiles();
+	}
+
+	public static ArrayList<ArrayList<String>> getMmm() {
+		return mmm;
+	}
+
+	public static void setMmm(ArrayList<ArrayList<String>> mmm) {
+		DataReader.mmm = mmm;
 	}
 
 
