@@ -6,24 +6,32 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
+/**
+ * @version java version "9.0.4"
+ * @author MyeongHui Lee
+ * This class was defined to read the txt file with thread.
+ * The class has smallArray arrayList, fileName and date2 variables
+ * The class has run(), getSmallArray(), setSmallArray(), changeDigit(), changeDigit2(), changeToMonth(), DataReaderForTXTThread() methods 
+ */
 public class DataReaderForTXTThread implements Runnable {
-	ArrayList2 fianlList=new ArrayList2();
-	
+
+
 	ArrayList<String> smallArray=new ArrayList<String>();
-	public static ArrayList<String> nameList2=new ArrayList<String>();
-	public static ArrayList<String> dateMessageList2=new ArrayList<String>();
+	/**
+	 * Create String type variable date2, put "" in date2
+	 * its modifier is static and public
+	 */
 	public static String date2="";
 	String fileName;
-	
-	
-	
-	
+
+
+
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
-		
+
+
 
 		try {
 
@@ -148,15 +156,6 @@ public class DataReaderForTXTThread implements Runnable {
 				message=message.trim();
 				dateMessage=name+','+date+message;
 				smallArray.add(dateMessage);
-				
-				
-				//fianlList.getA().add(dateMessage);
-				//arrayList.getA().add(dateMessage);
-				//nameList2.add(dateMessage);
-				//nameList2.add(name);
-				//dateMessageList2.add(dateMessage);
-				
-				//AddToHashMap2.addToHashMap2(name,date,message);
 
 				return;}
 
@@ -171,18 +170,6 @@ public class DataReaderForTXTThread implements Runnable {
 				message=message.trim();
 				dateMessage=name+','+date+message;
 				smallArray.add(dateMessage);
-				
-			     //fianlList.getA().add(dateMessage);
-				//arrayList.getA().add(dateMessage);
-				//nameList2.add(dateMessage);
-				
-				//System.out.println(name);
-				
-				//nameList2.add(name);
-				//dateMessageList2.add(dateMessage);
-				
-				//AddToHashMap2.addToHashMap2(name,date,message);
-
 
 			}
 			if(line==null)
@@ -190,13 +177,7 @@ public class DataReaderForTXTThread implements Runnable {
 
 
 			}
-			/*for(int k=0;k<smallArray.size();k++)
-			{
 
-				DataReaderForCSVThread.fullArray.add(smallArray.get(k));
-				//System.out.println(fullArray.get(k));
-			}
-		*/
 
 		}catch(FileNotFoundException e)
 		{
@@ -263,18 +244,16 @@ public class DataReaderForTXTThread implements Runnable {
 		else
 			return "12";
 	}
- 
+
 
 
 	public DataReaderForTXTThread()
 	{
-		
+
 	}
 
 	public DataReaderForTXTThread(String fileName) {
 		this.fileName=fileName;
-		//Thread worker =new Thread();
-		//worker.run();
-		//DataReader.threadList.add(worker);
+
 	}
 }

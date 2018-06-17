@@ -11,7 +11,7 @@ import org.apache.commons.cli.Options;
  * @version java version "9.0.4"
  * @author Lee MyeongHui
  * This class defines a CliRunner object
- * The CliRunner class has inputPath, outputPath, help members
+ * The CliRunner class has inputPath, outputPath, coreNum,help members
  * The CliRunner class has run(), parseOptions(), printHelp(), createOptions() methods 
  *
  */
@@ -73,7 +73,7 @@ public class CliRunner {
 				.argName("output option")
 				.required()
 				.build());
-		
+
 		options.addOption(Option.builder("c").longOpt("corenum")
 				.desc("Set a path of a directory that output data")
 				.hasArg()

@@ -2,7 +2,7 @@ package edu.handong.csee.java.HW3.ChatCounter;
 
 import java.util.ArrayList;
 /**
- * This class is defined to add the name and date and message to the hash map.
+ * This class is defined for redundancy
  * The AddToHashMap2 has addToHashMap2() public static methods
  * The AddToHashMap2 has arrayList2 public static ArrayList<Add2>
  * @version java version "9.0.4"
@@ -25,86 +25,85 @@ public class AddToHashMap2 {
 		int count=0;
 		String name="";
 		String message="";
-		//DataReaderForCSVThread.fullArray.size()
-		//ArrayList2 b=new ArrayList2();
-      
+
+
 		for(int p=0; p<DataReader.mmm.size();p++)
-      {
-
-    	 String line2=DataReader.mmm.get(p);
-    	  //System.out.println(line);
-    	 int remember=0; 
-    	 int j;
-    	  int size2=line2.length();
-    	  for(j=0;j<100;j++)
-    	  {
-    		  if(line2.charAt(j)==',')
-    			  {
-    			    //System.out.println(ary0);
-    				  break; 
-    			  }
-    		  remember++;
-    	  }
-    	  name=line2.substring(0, remember);
-    	  //System.out.println(name);
-    	  message=line2.substring(j+1);
-    	 //System.out.println(message);
-    	  
-    
-    	size=arrayList2.size();
-		
-    	if(size==0)
-		{//System.out.println("1");
-			arrayList2.add(new Add2(name,message));
-			continue;
-		}
-		else
 		{
-			for(i=0;i<size;i++)
+
+			String line2=DataReader.mmm.get(p);
+			//System.out.println(line);
+			int remember=0; 
+			int j;
+			int size2=line2.length();
+			for(j=0;j<100;j++)
 			{
-				
-				if(arrayList2.get(i).getName().contains(name)==true)
+				if(line2.charAt(j)==',')
 				{
-					
-					if(arrayList2.get(i).getDateMessageList().contains(message)==true)
-					{//System.out.println("2");
-						break;
-					}
-					else
-					{ //System.out.println("3");
-						Add2 temp=new Add2();
-						temp=arrayList2.get(i);
-					
 
-						temp.getDateMessageList().add(message);
+					break; 
+				}
+				remember++;
+			}
+			name=line2.substring(0, remember);
+			//System.out.println(name);
+			message=line2.substring(j+7);
+			//System.out.println(message);
 
-						//arrayList2.add(i, temp);
-						
-						break;
+
+			size=arrayList2.size();
+
+			if(size==0)
+			{//System.out.println("1");
+				arrayList2.add(new Add2(name,message));
+				continue;
+			}
+			else
+			{
+				for(i=0;i<size;i++)
+				{
+
+					if(arrayList2.get(i).getName().contains(name)==true)
+					{
+
+						if(arrayList2.get(i).getDateMessageList().contains(message)==true)
+						{//System.out.println("2");
+							break;
+						}
+						else
+						{ //System.out.println("3");
+							Add2 temp=new Add2();
+							temp=arrayList2.get(i);
+
+
+							temp.getDateMessageList().add(message);
+
+							//arrayList2.add(i, temp);
+
+							break;
+						}
 					}
+
+				}
+				if(i==size)
+				{		//System.out.println("4");			
+					arrayList2.add(new Add2(name,message));
+					continue;
 				}
 
-			    }
-			if(i==size)
-			{		//System.out.println("4");			
-				arrayList2.add(new Add2(name,message));
-			    continue;
+
 			}
-
-
-		}
 		}
 		for(Add2 y:arrayList2)
 		{
 			ArrayList<String> b=new ArrayList<String>();
-				System.out.println(y.getName());
+			System.out.println(y.getName());
 			b=y.getDateMessageList();
 			for(String c:b)
 				System.out.println(c);
-			
+
 		}
 	}
-	
-	
+
+
 }
 
