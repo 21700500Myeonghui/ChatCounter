@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DataReaderForCSVThread implements Runnable {
 
-	private ArrayList<String> smallArray=new ArrayList<String>();
+	ArrayList<String> smallArray=new ArrayList<String>();
 	public static ArrayList<String> fullArray=new ArrayList<String>();
 	//private ArrayList<String> smallArray=new ArrayList<String>();
 	//ArrayList2 arrayList=new ArrayList2();
@@ -29,6 +29,7 @@ public class DataReaderForCSVThread implements Runnable {
 	@Override
 	public void run() {
 	 //ArrayList<String> smallArray=new ArrayList<String>();
+		
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "UTF8"));
 			
@@ -85,7 +86,7 @@ public class DataReaderForCSVThread implements Runnable {
 					dateMessage=name+','+date+message;
 					smallArray.add(dateMessage);
 					
-					finalList.getA().add(dateMessage);
+					//finalList.getA().add(dateMessage);
 					//arrayList.getA().add(dateMessage);
 					//DataReaderForTXTThread.nameList2.add(dateMessage);
 					
@@ -107,7 +108,7 @@ public class DataReaderForCSVThread implements Runnable {
 					
 					dateMessage=name+','+date+message;
 					smallArray.add(dateMessage);
-					finalList.getA().add(dateMessage);
+					//finalList.getA().add(dateMessage);
 					
 					//arrayList.getA().add(dateMessage);
 					//ArrayList2.
@@ -124,12 +125,12 @@ public class DataReaderForCSVThread implements Runnable {
 					break;
 			
 			}
-			for(int k=0;k<smallArray.size();k++)
+			/*for(int k=0;k<smallArray.size();k++)
 			{
 
 			      fullArray.add(smallArray.get(k));
 				//System.out.println(fullArray.get(k));
-			}
+			}*/
 		
 		//fullArray.addAll(smallArray);
 		}

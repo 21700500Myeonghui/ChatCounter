@@ -23,7 +23,10 @@ import java.lang.Thread;
  */
 public class DataReader {
 	private File[] files;
-	public static ArrayList<ArrayList<String>> mmm=new ArrayList<ArrayList<String>>();
+	
+	static ArrayList<DataReaderForTXTThread> ob=new ArrayList<DataReaderForTXTThread>();
+	static ArrayList<DataReaderForCSVThread> ob2=new ArrayList<DataReaderForCSVThread>();
+	public static ArrayList<String> mmm=new ArrayList<String>();
 	ArrayList2 a=new ArrayList2();
 	
 	
@@ -69,16 +72,20 @@ public class DataReader {
 		try {
 			dataReader.getData(args[3], coreNum);
 			
-			/*for(int i=0; i<mmm.size();i++)
+			for(DataReaderForTXTThread ob3:ob)
 			{
-				ArrayList<String> mmm2=mmm.get(i);
-				System.out.println(mmm2);
-					/*for(int p=0;p<mmm2.size();p++)
-						System.out.println(";;;;;;;;"+mmm2.get(p));
-				
-				
-			}*/
+				mmm.addAll(ob3.getSmallArray());
+			}
 			
+			for(DataReaderForCSVThread ob4:ob2)
+			{
+				mmm.addAll(ob4.getSmallArray());
+			}
+			
+			for(int b=0;b<mmm.size();b++)
+			{
+				System.out.println(";;;;;;;;"+mmm.get(b));
+			}
 			AddToHashMap2.addToHashMap2();
 			
 			ChatMessageCounter.chatMessageCount(args[5]);
@@ -123,9 +130,7 @@ public class DataReader {
 			if(fileName.contains(".txt")==true) {
 				Runnable worker = new DataReaderForTXTThread(fileName);
 				executor.execute(worker);
-				
-				/*DataReaderForTXTThread object1=new DataReaderForTXTThread();
-				mmm.add(executor.));*/
+				ob.add((DataReaderForTXTThread)worker);
 				
 			
 				
@@ -135,11 +140,8 @@ public class DataReader {
 				
 				Runnable worker = new DataReaderForCSVThread(fileName);
 				executor.execute(worker);
+				ob2.add((DataReaderForCSVThread)worker);
 				
-				/*DataReaderForCSVThread object2=new DataReaderForCSVThread();
-				mmm.add(object2.getSmallArray());*/
-				//DataReaderForCSV.read(fileName);
-				//finalfinal.add(bbc.getSmallArray());
 				
 			}
 			
@@ -149,18 +151,19 @@ public class DataReader {
 		
 		while(!executor.isTerminated()) {
 		
+			
 		}
 
 		return dataDir.listFiles();
 	}
 
-	public static ArrayList<ArrayList<String>> getMmm() {
+	/*public static ArrayList<ArrayList<String>> getMmm() {
 		return mmm;
 	}
 
 	public static void setMmm(ArrayList<ArrayList<String>> mmm) {
 		DataReader.mmm = mmm;
-	}
+	}*/
 
 
 

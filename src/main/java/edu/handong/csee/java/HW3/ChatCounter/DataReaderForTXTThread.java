@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DataReaderForTXTThread implements Runnable {
 	ArrayList2 fianlList=new ArrayList2();
 	
-	private ArrayList<String> smallArray=new ArrayList<String>();
+	ArrayList<String> smallArray=new ArrayList<String>();
 	public static ArrayList<String> nameList2=new ArrayList<String>();
 	public static ArrayList<String> dateMessageList2=new ArrayList<String>();
 	public static String date2="";
@@ -150,7 +150,7 @@ public class DataReaderForTXTThread implements Runnable {
 				smallArray.add(dateMessage);
 				
 				
-				fianlList.getA().add(dateMessage);
+				//fianlList.getA().add(dateMessage);
 				//arrayList.getA().add(dateMessage);
 				//nameList2.add(dateMessage);
 				//nameList2.add(name);
@@ -171,7 +171,7 @@ public class DataReaderForTXTThread implements Runnable {
 				dateMessage=name+','+date+message;
 				smallArray.add(dateMessage);
 				
-			     fianlList.getA().add(dateMessage);
+			     //fianlList.getA().add(dateMessage);
 				//arrayList.getA().add(dateMessage);
 				//nameList2.add(dateMessage);
 				
@@ -189,13 +189,13 @@ public class DataReaderForTXTThread implements Runnable {
 
 
 			}
-			for(int k=0;k<smallArray.size();k++)
+			/*for(int k=0;k<smallArray.size();k++)
 			{
 
 				DataReaderForCSVThread.fullArray.add(smallArray.get(k));
 				//System.out.println(fullArray.get(k));
 			}
-		
+		*/
 
 		}catch(FileNotFoundException e)
 		{

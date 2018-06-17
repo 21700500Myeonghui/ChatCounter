@@ -28,10 +28,10 @@ public class AddToHashMap2 {
 		//DataReaderForCSVThread.fullArray.size()
 		//ArrayList2 b=new ArrayList2();
       
-		for(int p=0; p<DataReaderForCSVThread.fullArray.size();p++)
+		for(int p=0; p<DataReader.mmm.size();p++)
       {
 
-    	 String line2=DataReaderForCSVThread.fullArray.get(p);
+    	 String line2=DataReader.mmm.get(p);
     	  //System.out.println(line);
     	 int remember=0; 
     	 int j;
@@ -46,20 +46,11 @@ public class AddToHashMap2 {
     		  remember++;
     	  }
     	  name=line2.substring(0, remember);
-    	  //System.out.println(name);
+    	  System.out.println(name);
     	  message=line2.substring(j+1);
-    	  //System.out.println(message);
+    	  System.out.println(message);
     	  
-    	  
-    	//String []ary=b.getA().get(p).split(",");
-    	//String []ary=DataReaderForCSVThread.fullArray.get(p).split(",");
-    	//System.out.print(ary0);
-    	//System.out.println(ary1);
-    	//String []ary=DataReaderForTXTThread.nameList2.get(p).split(",");
-    	//String name=DataReaderForTXTThread.nameList2.get(p);
-    	//System.out.print(name);
-    	//String dateMessage=DataReaderForTXTThread.dateMessageList2.get(p);
-    	//System.out.println(dateMessage);
+    
     	size=arrayList2.size();
 		
     	if(size==0)
