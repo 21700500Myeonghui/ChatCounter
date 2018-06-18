@@ -93,7 +93,7 @@ public class AddToHashMap2 {
 
 			}
 		}
-		for(Add2 y:arrayList2)
+		/*for(Add2 y:arrayList2)
 		{
 			ArrayList<String> b=new ArrayList<String>();
 			System.out.println(y.getName());
@@ -101,7 +101,7 @@ public class AddToHashMap2 {
 			for(String c:b)
 				System.out.println(c);
 
-		}
+		}*/
 	}
 
 
