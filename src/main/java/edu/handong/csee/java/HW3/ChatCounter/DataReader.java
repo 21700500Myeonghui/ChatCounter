@@ -38,14 +38,15 @@ public class DataReader {
 	public static void main(String[] args) throws FileNotFoundException {
 
 		// TODO Auto-generated method stub	
-		int coreNum = Integer.parseInt(args[1]);
-
 		CliRunner runner=new CliRunner();
 		runner.run(args);
+		int coreNum = Integer.parseInt(runner.coreNum);
+
+		
 
 		DataReader dataReader = new DataReader();
 		try {
-			dataReader.getData(args[3], coreNum);
+			dataReader.getData(runner.inputPath, coreNum);
 
 			for(DataReaderForTXTThread ob3:ob)
 			{
@@ -63,7 +64,7 @@ public class DataReader {
 			}
 			AddToHashMap2.addToHashMap2();
 
-			ChatMessageCounter.chatMessageCount(args[5]);
+			ChatMessageCounter.chatMessageCount(runner.outputPath);
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("please typing pleas....");
@@ -127,5 +128,5 @@ public class DataReader {
 
 
 }
-
+//
 

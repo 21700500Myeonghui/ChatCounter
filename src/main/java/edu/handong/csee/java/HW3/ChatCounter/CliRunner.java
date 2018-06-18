@@ -16,9 +16,9 @@ import org.apache.commons.cli.Options;
  *
  */
 public class CliRunner {
-	private String inputPath;
-	private String outputPath;
-	private String coreNum;
+	 String inputPath;
+	 String outputPath;
+	 String coreNum;
 	private boolean help;
 
 	public void run(String[] args)
